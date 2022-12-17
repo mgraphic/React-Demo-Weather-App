@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+// import { Fragment, useState } from 'react';
+// import { Button } from 'react-bootstrap';
+import { Dashboard } from './components/dashboard/Dashboard';
+// import { AsyncExample } from './AsyncExample';
+// import { ModalExample } from './ModalExample';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+export const App = () => {
+    /*
+    // Bootstrap Lookahead example
+    const handleSelected = (selected) => {
+        console.log(`FROM App.js => You selected: ${selected.label}`, selected);
+    };
 
-export default App;
+    return <AsyncExample handleSelected={handleSelected} />;
+    */
+    /* // Bootstrap Modal example
+    const [show, setShow] = useState(false);
+
+    return (
+        <>
+            <Button variant="primary" onClick={() => setShow(true)}>
+                Show modal
+            </Button>
+
+    {/ * {show ? <ModalExample show={show} setShow={setShow} /> : ''} * /}
+            <ModalExample show={show} setShow={setShow} />
+    {/ * {show ? 'true' : 'false'} * /}
+        </>
+    ); */
+
+    return <Dashboard />;
+};
+
+// export default App;
+// crypto.randomUUID()
