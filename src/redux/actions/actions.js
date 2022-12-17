@@ -3,8 +3,14 @@ import {
     ADD_LOCATION,
     LOAD_FORECAST_DATA_SUCCESS,
     LOAD_WEATHER_DATA_SUCCESS,
+    SWITCH_UNIT,
 } from './actionTypes';
 import { apiCallError, beginApiCall } from './apiStatusActions';
+
+export const switchUnit = (payload) => ({
+    type: SWITCH_UNIT,
+    payload,
+});
 
 export const addLocation = (payload) => ({
     type: ADD_LOCATION,

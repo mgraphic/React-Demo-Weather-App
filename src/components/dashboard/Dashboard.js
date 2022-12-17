@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 // import { ModalExample } from '../../ModalExample';
 import { addLocation } from '../../redux/actions/actions';
 import { ForecastModal } from '../details/ForecastModal';
+import { UnitSwitcher } from '../shared/UnitSwitcher';
 import { WeatherCard } from '../shared/WeatherCard';
 // import { AsyncExample } from '../../AsyncExample';
 import { LocationSearch } from './LocationSearch';
@@ -61,6 +62,7 @@ const DashboardComponent = ({ locations, addLocation }) => {
     };
     return (
         <div className="container mt-3 mb-3">
+            <UnitSwitcher />
             <LocationSearch handleSelected={handleSelected} />
 
             {/* <div className="d-flex flex-wrap justify-content-between"> */}

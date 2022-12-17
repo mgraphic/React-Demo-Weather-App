@@ -1,4 +1,6 @@
 export const initialState = {
+    unit: 'imperial',
+
     locations: [
         {
             name: 'Tampa',

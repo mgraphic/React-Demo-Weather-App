@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { WeatherCard } from '../shared/WeatherCard';
 import { loadForecastData } from '../../redux/actions/actions';
 import { useState } from 'react';
-import { tempToImperial } from '../../services/utils';
+import { formatTemp } from '../../services/utils';
 import moment from 'moment';
 import { environment } from '../../environment';
 
@@ -13,6 +13,7 @@ const ForecastModalComponent = ({
     location,
     forecastData,
     loadForecastData,
+    ...props
 }) => {
     const forecast = forecastData.find((item) => item.uuid === location.uuid);
     const [hasLoaded, setLoaded] = useState(false);
@@ -74,13 +75,15 @@ const ForecastModalComponent = ({
                                             )}
                                         </td>
                                         <td>
-                                            {tempToImperial(
-                                                weather.main.temp_min
+                                            {formatTemp(
+                                                weather.main.temp_min,
+                                                props.unit
                                             )}
                                         </td>
                                         <td>
-                                            {tempToImperial(
-                                                weather.main.temp_max
+                                            {formatTemp(
+                                                weather.main.temp_max,
+                                                props.unit
                                             )}
                                         </td>
                                         <td>{weather.main.humidity}%</td>
@@ -98,6 +101,7 @@ const ForecastModalComponent = ({
 
 const mapStateToProps = (state) => ({
     forecastData: state.forecastData,
+    unit: state.unit,
 });
 
 const mapDispatchToProps = {

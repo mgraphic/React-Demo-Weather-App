@@ -62,6 +62,18 @@ export const tempToStandard = (temperature) => {
     return `${value}° c`;
 };
 
+export const formatTemp = (temperature, unit) => {
+    switch (unit) {
+        case 'imperial':
+            return tempToImperial(temperature);
+        case 'standard':
+            return tempToStandard(temperature);
+
+        default:
+            return temperature;
+    }
+};
+
 export const METERS_PER_SEC_CALC_BASE = 2.237;
 
 export const speedToImperial = (speed) => {
@@ -79,6 +91,18 @@ export const speedToStandard = (speed) => {
     return `${value} m/s`;
 };
 
+export const formatSpeed = (speed, unit) => {
+    switch (unit) {
+        case 'imperial':
+            return speedToImperial(speed);
+        case 'standard':
+            return speedToStandard(speed);
+
+        default:
+            return speed;
+    }
+};
+
 export const INCHES_CALC_BASE = 25.4;
 
 export const sizeToImperial = (size) => {
@@ -91,6 +115,18 @@ export const sizeToStandard = (size) => {
     const value = roundNumber(size, ROUND_TWO_DECIMAL);
 
     return `${value} mm`;
+};
+
+export const formatSize = (size, unit) => {
+    switch (unit) {
+        case 'imperial':
+            return sizeToImperial(size);
+        case 'standard':
+            return sizeToStandard(size);
+
+        default:
+            return size;
+    }
 };
 
 export const MILES_CALC_BASE = 1609;
@@ -110,4 +146,16 @@ export const distanceToStandard = (distance) => {
     );
 
     return `${value} km`;
+};
+
+export const formatDistance = (distance, unit) => {
+    switch (unit) {
+        case 'imperial':
+            return distanceToImperial(distance);
+        case 'standard':
+            return distanceToStandard(distance);
+
+        default:
+            return distance;
+    }
 };

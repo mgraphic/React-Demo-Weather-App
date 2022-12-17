@@ -4,10 +4,10 @@ import { connect } from 'react-redux';
 import { environment } from '../../environment';
 import { loadWeatherData } from '../../redux/actions/actions';
 import {
-    distanceToImperial,
-    sizeToImperial,
-    speedToImperial,
-    tempToImperial,
+    formatDistance,
+    formatSize,
+    formatSpeed,
+    formatTemp,
 } from '../../services/utils';
 
 const WeatherCardComponent = ({
@@ -70,7 +70,7 @@ const WeatherCardComponent = ({
                                 Temp:
                             </Col>
                             <Col className="text-start">
-                                {tempToImperial(weather.main.temp)}
+                                {formatTemp(weather.main.temp, props.unit)}
                             </Col>
                         </Row>
                         <Row>
@@ -78,7 +78,10 @@ const WeatherCardComponent = ({
                                 Feels like:
                             </Col>
                             <Col className="text-start">
-                                {tempToImperial(weather.main.feels_like)}
+                                {formatTemp(
+                                    weather.main.feels_like,
+                                    props.unit
+                                )}
                             </Col>
                         </Row>
                         {weather.main.humidity > 0 && (
@@ -97,8 +100,11 @@ const WeatherCardComponent = ({
                                     Wind speed:
                                 </Col>
                                 <Col className="text-start">
-                                    {speedToImperial(weather.wind.speed)} (
-                                    {weather.wind.deg}&deg;)
+                                    {formatSpeed(
+                                        weather.wind.speed,
+                                        props.unit
+                                    )}{' '}
+                                    ({weather.wind.deg}&deg;)
                                 </Col>
                             </Row>
                         )}
@@ -118,7 +124,7 @@ const WeatherCardComponent = ({
                                     Rain last hour:
                                 </Col>
                                 <Col className="text-start">
-                                    {sizeToImperial(weather.rain['1h'])}
+                                    {formatSize(weather.rain['1h'], props.unit)}
                                 </Col>
                             </Row>
                         )}
@@ -128,7 +134,7 @@ const WeatherCardComponent = ({
                                     Rain last 3 hours:
                                 </Col>
                                 <Col className="text-start">
-                                    {sizeToImperial(weather.rain['3h'])}
+                                    {formatSize(weather.rain['3h'], props.unit)}
                                 </Col>
                             </Row>
                         )}
@@ -138,7 +144,7 @@ const WeatherCardComponent = ({
                                     Snow last hour:
                                 </Col>
                                 <Col className="text-start">
-                                    {sizeToImperial(weather.snow['1h'])}
+                                    {formatSize(weather.snow['1h'], props.unit)}
                                 </Col>
                             </Row>
                         )}
@@ -148,7 +154,7 @@ const WeatherCardComponent = ({
                                     Snow last 3 hours:
                                 </Col>
                                 <Col className="text-start">
-                                    {sizeToImperial(weather.snow['3h'])}
+                                    {formatSize(weather.snow['3h'], props.unit)}
                                 </Col>
                             </Row>
                         )}
@@ -158,7 +164,10 @@ const WeatherCardComponent = ({
                                     Visibility:
                                 </Col>
                                 <Col className="text-start">
-                                    {distanceToImperial(weather.visibility)}
+                                    {formatDistance(
+                                        weather.visibility,
+                                        props.unit
+                                    )}
                                 </Col>
                             </Row>
                         )}
@@ -178,6 +187,7 @@ const WeatherCardComponent = ({
 
 const mapStateToProps = (state) => ({
     weatherData: state.weatherData,
+    unit: state.unit,
 });
 
 const mapDispatchToProps = {
