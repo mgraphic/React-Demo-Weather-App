@@ -1,30 +1,11 @@
+import mockedState from '../../mock-state.json';
+
 export const initialState = {
     unit: 'imperial',
 
-    locations: [
-        {
-            name: 'Tampa',
-            local_names: {
-                oc: 'Tampa',
-                ar: 'تامبا',
-                he: 'טמפה',
-                ru: 'Тампа',
-                uk: 'Тампа',
-                el: 'Τάμπα',
-                en: 'Tampa',
-            },
-            lat: 27.9477595,
-            lon: -82.458444,
-            country: 'US',
-            state: 'Florida',
-            label: 'Tampa, Florida, US',
-            uuid: '36b8f84d-df4e-4d49-b662-bcde71a8764f',
-        },
-    ],
+    locations: mockedState.locations,
 
-    weatherData: [
-        /* { main: { temp: 123 } } */
-    ],
+    weatherData: mockedState.weather,
 
-    forecastData: [],
+    forecastData: mockedState.forecast,
 };
