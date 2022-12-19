@@ -1,0 +1,5 @@
+#unit-switch-check-standard:not(:checked) + label,
+#unit-switch-check-imperial:not(:checked) + label {
+    background-color: var(--bs-light);
+    color: var(--bs-primary)
+}

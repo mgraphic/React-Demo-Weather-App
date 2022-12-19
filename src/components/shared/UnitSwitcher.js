@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 
 import { switchUnit } from '../../redux/actions/actions';
 
+import './UnitSwitcher.css';
+
 const UnitSwitcherComponent = ({ unit, switchUnit }) => {
     const handleChange = (value) => {
         switchUnit(value);
