@@ -1,3 +1,35 @@
+# React Demo Weather App
+
+This is a demo weather app built in React/Redux
+
+## Requirements
+
+-   A free account to https://openweathermap.org
+
+## Setup
+
+1. Create a **_.env_** file in the project root and copy the contents from .env.example and replace the `REACT_APP_OPENWEATHER_API_KEY` with the API key from your Open Weather account.
+
+```js
+REACT_APP_OPENWEATHER_API_URL_WEATHER =
+    'https://api.openweathermap.org/data/2.5/weather';
+REACT_APP_OPENWEATHER_API_URL_FORECAST =
+    'http://api.openweathermap.org/data/2.5/forecast';
+REACT_APP_OPENWEATHER_API_URL_GEOLOCATION =
+    'https://api.openweathermap.org/geo/1.0/direct';
+REACT_APP_OPENWEATHER_API_URL_ICONS = 'https://openweathermap.org/img/wn';
+
+REACT_APP_OPENWEATHER_API_KEY = 'private api key';
+```
+
+2. Install the Node package dependencies.
+
+```bash
+npm ci
+```
+
+---
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
