@@ -49,9 +49,9 @@ const DashboardComponent = ({ locations, addLocation }) => {
     };
 
     const cardClickHandler = ({ location }) => {
-        console.log('Processing click from DashboardComponent', location);
         toggleModalDisplay(location.uuid, true);
     };
+
     return (
         <div className="container mt-3 mb-3">
             <UnitSwitcher />

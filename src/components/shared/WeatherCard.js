@@ -27,13 +27,15 @@ const WeatherCardComponent = ({
         }
     }, [props.onClick]);
 
-    if (!weather && weatherData && !hasLoaded && location) {
-        setLoaded(true);
+    useEffect(() => {
+        if (!weather && weatherData && !hasLoaded && location) {
+            setLoaded(true);
 
-        loadWeatherData(location).catch((error) => {
-            alert(`Loading weather data for ${location.label} failed`);
-        });
-    }
+            loadWeatherData(location).catch((error) => {
+                alert(`Loading weather data for ${location.label} failed`);
+            });
+        }
+    }, [weather, weatherData, hasLoaded, location, loadWeatherData]);
 
     const handleClick = (event) => {
         if (role === 'button') {
@@ -42,7 +44,7 @@ const WeatherCardComponent = ({
         }
     };
 
-    if (!weather) {
+    if (!weather?.weather) {
         return <></>;
     }
 

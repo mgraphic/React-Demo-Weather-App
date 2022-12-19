@@ -1,59 +1,23 @@
 {
     "locations": [
-        [
-            {
-                "name": "Tampa (example data)",
-                "local_names": {
-                    "en": "Tampa (example data)",
-                    "oc": "Tampa (example data)",
-                    "ar": "تامبا (example data)",
-                    "he": "טמפה (example data)",
-                    "ru": "Тампа (example data)",
-                    "uk": "Тампа (example data)",
-                    "el": "Τάμπα (example data)"
-                },
-                "lat": 27.9477595,
-                "lon": -82.458444,
-                "country": "US",
-                "state": "Florida"
+        {
+            "name": "Tampa (example data)",
+            "local_names": {
+                "en": "Tampa (example data)",
+                "oc": "Tampa (example data)",
+                "ar": "تامبا (example data)",
+                "he": "טמפה (example data)",
+                "ru": "Тампа (example data)",
+                "uk": "Тампа (example data)",
+                "el": "Τάμπα (example data)"
             },
-            {
-                "name": "Tampa (example data)",
-                "lat": 38.5472314,
-                "lon": -97.1530774,
-                "country": "US",
-                "state": "Kansas"
-            },
-            {
-                "name": "Tâmpa (example data)",
-                "local_names": {
-                    "hu": "Székelytompa (example data)",
-                    "ro": "Tâmpa (example data)",
-                    "uk": "Тимпа (example data)"
-                },
-                "lat": 46.5301915,
-                "lon": 24.7663459,
-                "country": "RO"
-            },
-            {
-                "name": "Tâmpa (example data)",
-                "local_names": {
-                    "hu": "Tompa (example data)",
-                    "ro": "Tâmpa (example data)",
-                    "uk": "Тимпа (example data)"
-                },
-                "lat": 45.821469,
-                "lon": 23.0112906,
-                "country": "RO"
-            },
-            {
-                "name": "Tampa (example data)",
-                "lat": 18.7063532,
-                "lon": 84.0436604,
-                "country": "IN",
-                "state": "Andhra Pradesh"
-            }
-        ]
+            "lat": 27.9477595,
+            "lon": -82.458444,
+            "country": "US",
+            "state": "Florida",
+            "label": "Tampa, Florida, US (example data)",
+            "uuid": "00000000-0000-0000-0000-000000000000"
+        }
     ],
     "weather": [
         {
@@ -89,7 +53,8 @@
             "timezone": -18000,
             "id": 4174757,
             "name": "Tampa (example data)",
-            "cod": 200
+            "cod": 200,
+            "uuid": "00000000-0000-0000-0000-000000000000"
         }
     ],
     "forecast": [
@@ -1235,7 +1200,8 @@
                 "timezone": -18000,
                 "sunrise": 1671279288,
                 "sunset": 1671316633
-            }
+            },
+            "uuid": "00000000-0000-0000-0000-000000000000"
         }
     ]
 }
