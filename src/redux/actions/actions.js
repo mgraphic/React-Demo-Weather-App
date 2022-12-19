@@ -1,11 +1,12 @@
 import { getForecastData, getWeatherData } from '../../services/openWeatherApi';
+
+import { apiCallError, beginApiCall } from './apiStatusActions';
 import {
     ADD_LOCATION,
     LOAD_FORECAST_DATA_SUCCESS,
     LOAD_WEATHER_DATA_SUCCESS,
     SWITCH_UNIT,
 } from './actionTypes';
-import { apiCallError, beginApiCall } from './apiStatusActions';
 
 export const switchUnit = (payload) => ({
     type: SWITCH_UNIT,
@@ -33,23 +34,6 @@ export const loadWeatherData = (location) => async (dispatch) => {
         throw error;
     }
 };
-
-// export const loadWeatherData = (location) => {
-//     console.log('loadWeatherData');
-//     return (dispatch) => {
-//         dispatch(beginApiCall());
-
-//         return getWeatherData(location)
-//             .then((payload) => {
-//                 console.log('loadWeatherDataSuccess');
-//                 dispatch(loadWeatherDataSuccess(payload));
-//             })
-//             .catch((error) => {
-//                 dispatch(apiCallError(error));
-//                 throw error;
-//             });
-//     };
-// };
 
 export const loadForecastDataSuccess = (payload) => ({
     type: LOAD_FORECAST_DATA_SUCCESS,

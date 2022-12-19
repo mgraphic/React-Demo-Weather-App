@@ -1,6 +1,7 @@
+import { AsyncTypeahead } from 'react-bootstrap-typeahead';
 import { createRef, useState } from 'react';
 import 'react-bootstrap-typeahead/css/Typeahead.bs5.css';
-import { AsyncTypeahead } from 'react-bootstrap-typeahead';
+
 import { getGeoLocations } from '../../services/openWeatherApi';
 
 export const LocationSearch = ({ handleSelected }) => {
