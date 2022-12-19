@@ -1,11 +1,13 @@
-import { Modal, Table } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { WeatherCard } from '../shared/WeatherCard';
-import { loadForecastData } from '../../redux/actions/actions';
+import { Modal, Table } from 'react-bootstrap';
 import { useState } from 'react';
-import { formatTemp } from '../../services/utils';
+
 import moment from 'moment';
+
 import { environment } from '../../environment';
+import { formatTemp } from '../../services/utils';
+import { loadForecastData } from '../../redux/actions/actions';
+import { WeatherCard } from '../shared/WeatherCard';
 
 const ForecastModalComponent = ({
     show,

@@ -1,5 +1,6 @@
 import { ToggleButton, ToggleButtonGroup } from 'react-bootstrap';
 import { connect } from 'react-redux';
+
 import { switchUnit } from '../../redux/actions/actions';
 
 const UnitSwitcherComponent = ({ unit, switchUnit }) => {

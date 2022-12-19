@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Card, Col, Container, Row } from 'react-bootstrap';
 import { connect } from 'react-redux';
+
 import { environment } from '../../environment';
 import { loadWeatherData } from '../../redux/actions/actions';
 import {
@@ -14,10 +15,8 @@ const WeatherCardComponent = ({
     location,
     weatherData,
     loadWeatherData,
-    // className = 'text-danger',
     ...props
 }) => {
-    // const ref = createRef();
     const weather = weatherData.find((item) => item.uuid === location.uuid);
     const [hasLoaded, setLoaded] = useState(false);
     const [role, setRole] = useState('default');
@@ -37,9 +36,7 @@ const WeatherCardComponent = ({
     }
 
     const handleClick = (event) => {
-        console.log('Clicked from WeatherCardComponent');
         if (role === 'button') {
-            console.log('Processing click from WeatherCardComponent');
             event.preventDefault();
             props.onClick({ event, location, weatherData });
         }
@@ -172,13 +169,12 @@ const WeatherCardComponent = ({
                             </Row>
                         )}
                     </Container>
-                    {/* </div> */}
+
                     {role === 'button' && (
                         <Card.Link href="#" onClick={(e) => e.preventDefault()}>
                             Get Forecast
                         </Card.Link>
                     )}
-                    {/* </Card.Text> */}
                 </Card.Body>
             </Card>
         </div>

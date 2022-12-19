@@ -4,6 +4,7 @@ import {
     LOAD_WEATHER_DATA_SUCCESS,
     SWITCH_UNIT,
 } from '../actions/actionTypes';
+
 import { initialState } from './initialState';
 
 export const unitSwitchReducer = (state = initialState.unit, action) => {
@@ -31,24 +32,10 @@ export const weatherDataReducer = (
 ) => {
     switch (action.type) {
         case LOAD_WEATHER_DATA_SUCCESS:
-            // console.log('LOAD_WEATHER_DATA_SUCCESS reducer', [
-            //     action.payload,
-            //     ...state,
-            // ]);
-            // return [action.payload, ...state];
-            // console.log('LOAD_WEATHER_DATA_SUCCESS reducer', [
-            //     action.payload,
-            //     ...state,
-            // ]);
-            // append only new payload items
             if (
                 action.payload &&
                 !state.some((item) => item.uuid === action.payload.uuid)
             ) {
-                console.log('LOAD_WEATHER_DATA_SUCCESS reducer', [
-                    action.payload,
-                    ...state,
-                ]);
                 return [action.payload, ...state];
             }
 
@@ -69,10 +56,6 @@ export const forecastDataReducer = (
                 action.payload &&
                 !state.some((item) => item.uuid === action.payload.uuid)
             ) {
-                console.log('LOAD_FORECAST_DATA_SUCCESS reducer', [
-                    action.payload,
-                    ...state,
-                ]);
                 return [action.payload, ...state];
             }
 
