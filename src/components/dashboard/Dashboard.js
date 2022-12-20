@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import { Fragment, useEffect, useState } from 'react';
+import { useQuery } from 'react-query';
 
 import { addLocation } from '../../redux/actions/actions';
 import { ForecastModal } from '../details/ForecastModal';
@@ -9,7 +10,6 @@ import { WeatherCard } from '../shared/WeatherCard';
 import { LocationSearch } from './LocationSearch';
 import { getUserLocation } from '../../services/utils';
 import { getReverseGeoLocation } from '../../services/openWeatherApi';
-import { useQuery } from 'react-query';
 
 const DashboardComponent = ({ locations, addLocation }) => {
     const [showModals, setShowModals] = useState([]);

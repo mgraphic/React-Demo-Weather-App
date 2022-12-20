@@ -20,6 +20,7 @@
         "react-bootstrap": "^2.7.0",
         "react-bootstrap-typeahead": "^6.0.0",
         "react-dom": "^18.2.0",
+        "react-query": "^3.39.2",
         "react-redux": "^8.0.5",
         "react-scripts": "^5.0.1",
         "redux": "^4.2.0",

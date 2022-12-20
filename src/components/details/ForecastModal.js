@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { Modal, Table } from 'react-bootstrap';
-import { useEffect, useState } from 'react';
+import { useQuery } from 'react-query';
 
 import moment from 'moment';
 
@@ -18,17 +18,14 @@ const ForecastModalComponent = ({
     ...props
 }) => {
     const forecast = forecastData.find((item) => item.uuid === location.uuid);
-    const [hasLoaded, setLoaded] = useState(false);
 
-    useEffect(() => {
-        if (!forecast && forecastData && !hasLoaded && location) {
-            setLoaded(true);
-
+    useQuery('forecastData', () => {
+        if (!forecast) {
             loadForecastData(location).catch((error) => {
                 alert(`Loading forecast data for ${location.label} failed`);
             });
         }
-    }, [forecast, forecastData, hasLoaded, location, loadForecastData]);
+    });
 
     return (
         <Modal show={show} onHide={() => setShow(false)} size="xl">

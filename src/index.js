@@ -7,13 +7,16 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { App } from './App';
 import reportWebVitals from './reportWebVitals';
 import { store } from './redux/configureStore';
+import { QueryClient, QueryClientProvider } from 'react-query';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
     <React.StrictMode>
         <Provider store={store}>
-            <App />
+            <QueryClientProvider client={new QueryClient()}>
+                <App />
+            </QueryClientProvider>
         </Provider>
     </React.StrictMode>
 );

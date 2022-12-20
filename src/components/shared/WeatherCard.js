@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Card, Col, Container, Row } from 'react-bootstrap';
+import { useQuery } from 'react-query';
 import { connect } from 'react-redux';
 
 import { environment } from '../../environment';
@@ -18,7 +19,6 @@ const WeatherCardComponent = ({
     ...props
 }) => {
     const weather = weatherData.find((item) => item.uuid === location.uuid);
-    const [hasLoaded, setLoaded] = useState(false);
     const [role, setRole] = useState('default');
 
     useEffect(() => {
@@ -27,15 +27,13 @@ const WeatherCardComponent = ({
         }
     }, [props.onClick]);
 
-    useEffect(() => {
-        if (!weather && weatherData && !hasLoaded && location) {
-            setLoaded(true);
-
+    useQuery('weatherData', () => {
+        if (!weather) {
             loadWeatherData(location).catch((error) => {
                 alert(`Loading weather data for ${location.label} failed`);
             });
         }
-    }, [weather, weatherData, hasLoaded, location, loadWeatherData]);
+    });
 
     const handleClick = (event) => {
         if (role === 'button') {
@@ -57,12 +55,10 @@ const WeatherCardComponent = ({
                         {weather.weather[0].main} (
                         {weather.weather[0].description})
                     </Card.Subtitle>
-                    {/* <Card.Text> */}
                     <img
                         src={`${environment.api.path.icons}/${weather.weather[0].icon}@4x.png`}
                         alt={weather.weather[0].main}
                     />
-                    {/* <div> */}
                     <Container className="mb-3">
                         <Row>
                             <Col className="text-end text-uppercase fw-bold text-secondary">
