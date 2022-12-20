@@ -28,6 +28,19 @@ export const sleep = (time, resolver = () => null) => {
     return promise;
 };
 
+export const getUserLocation = () => {
+    return new Promise((resolve, reject) => {
+        navigator.geolocation.getCurrentPosition(
+            (location) =>
+                resolve({
+                    lat: location.coords.latitude,
+                    lon: location.coords.longitude,
+                }),
+            reject
+        );
+    });
+};
+
 export const ROUND_ONE_DECIMAL = 10;
 
 export const ROUND_TWO_DECIMAL = 100;

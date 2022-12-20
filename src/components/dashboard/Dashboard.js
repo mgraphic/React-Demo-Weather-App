@@ -7,6 +7,9 @@ import { UnitSwitcher } from '../shared/UnitSwitcher';
 import { WeatherCard } from '../shared/WeatherCard';
 
 import { LocationSearch } from './LocationSearch';
+import { getUserLocation } from '../../services/utils';
+import { getReverseGeoLocation } from '../../services/openWeatherApi';
+import { useQuery } from 'react-query';
 
 const DashboardComponent = ({ locations, addLocation }) => {
     const [showModals, setShowModals] = useState([]);
@@ -51,6 +54,28 @@ const DashboardComponent = ({ locations, addLocation }) => {
     const cardClickHandler = ({ location }) => {
         toggleModalDisplay(location.uuid, true);
     };
+
+    useQuery('userLocation', async () => {
+        try {
+            const { lat, lon } = await getUserLocation();
+            const location = (await getReverseGeoLocation(lat, lon, 1))[0];
+
+            if (!location) {
+                return;
+            }
+
+            const userLocation = Object.assign({}, location, {
+                label: `${location.name}, ${
+                    location.state ? `${location.state}, ` : ''
+                }${location.country}`,
+                uuid: crypto.randomUUID(),
+            });
+
+            addLocation(userLocation);
+        } catch (error) {
+            console.error(error);
+        }
+    });
 
     return (
         <div className="container mt-3 mb-3">

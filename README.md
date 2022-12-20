@@ -17,6 +17,8 @@ REACT_APP_OPENWEATHER_API_URL_FORECAST =
     'http://api.openweathermap.org/data/2.5/forecast';
 REACT_APP_OPENWEATHER_API_URL_GEOLOCATION =
     'https://api.openweathermap.org/geo/1.0/direct';
+REACT_APP_OPENWEATHER_API_URL_GEOLOCATION_REVERSE =
+    'https://api.openweathermap.org/geo/1.0/reverse';
 REACT_APP_OPENWEATHER_API_URL_ICONS = 'https://openweathermap.org/img/wn';
 
 REACT_APP_OPENWEATHER_API_KEY = 'private api key';
