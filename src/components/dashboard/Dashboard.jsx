@@ -13,6 +13,7 @@ import { getReverseGeoLocation } from '../../services/openWeatherApi';
 
 const DashboardComponent = ({ locations, addLocation }) => {
     const [showModals, setShowModals] = useState([]);
+    const [queryCompleted, setQueryStatus] = useState(false);
 
     useEffect(() => {
         for (let i = 0; i < locations.length; i++) {
@@ -56,24 +57,28 @@ const DashboardComponent = ({ locations, addLocation }) => {
     };
 
     useQuery('userLocation', async () => {
-        try {
-            const { lat, lon } = await getUserLocation();
-            const location = (await getReverseGeoLocation(lat, lon, 1))[0];
+        if (!queryCompleted) {
+            try {
+                const { lat, lon } = await getUserLocation();
+                const location = (await getReverseGeoLocation(lat, lon, 1))[0];
 
-            if (!location) {
-                return;
+                if (!location) {
+                    return;
+                }
+
+                const userLocation = Object.assign({}, location, {
+                    label: `${location.name}, ${
+                        location.state ? `${location.state}, ` : ''
+                    }${location.country}`,
+                    uuid: crypto.randomUUID(),
+                });
+
+                addLocation(userLocation);
+                setQueryStatus(true);
+            } catch (error) {
+                console.error(error);
+                setQueryStatus(true);
             }
-
-            const userLocation = Object.assign({}, location, {
-                label: `${location.name}, ${
-                    location.state ? `${location.state}, ` : ''
-                }${location.country}`,
-                uuid: crypto.randomUUID(),
-            });
-
-            addLocation(userLocation);
-        } catch (error) {
-            console.error(error);
         }
     });
 
