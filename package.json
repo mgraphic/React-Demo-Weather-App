@@ -5,7 +5,9 @@
     "scripts": {
         "start": "react-scripts start",
         "build": "react-scripts build",
-        "test": "react-scripts test",
+        "xtest": "react-scripts test",
+        "xxtest": "react-scripts test --transformIgnorePatterns \"(node_modules/(?!axios))|(.\\.css)/\"",
+        "test": "react-scripts test --transformIgnorePatterns \"(node_modules/(?!axios))/\"",
         "eject": "react-scripts eject"
     },
     "dependencies": {
@@ -28,6 +30,7 @@
         "web-vitals": "^2.1.4"
     },
     "devDependencies": {
+        "identity-obj-proxy": "^3.0.0",
         "redux-immutable-state-invariant": "^2.1.0"
     },
     "eslintConfig": {
