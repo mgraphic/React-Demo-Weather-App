@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { fireEvent, queryByText, render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { Dashboard } from './Dashboard';
 import { store } from '../../redux/configureStore';
@@ -16,17 +16,31 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 
 jest.mock('../shared/UnitSwitcher', () => ({
     ...jest.requireActual('../shared/UnitSwitcher'),
-    UnitSwitcher: () => <>UnitSwitcher Component</>,
+    UnitSwitcher: () => <div>UnitSwitcher Component</div>,
 }));
 
 jest.mock('../shared/WeatherCard', () => ({
     ...jest.requireActual('../shared/WeatherCard'),
-    WeatherCard: () => <>WeatherCard Component</>,
+    WeatherCard: ({ location, onClick }) => (
+        <div
+            onClick={(e) => {
+                e.preventDefault();
+                onClick({ location });
+            }}
+        >
+            WeatherCard Component
+        </div>
+    ),
 }));
 
 jest.mock('./LocationSearch', () => ({
     ...jest.requireActual('./LocationSearch'),
-    LocationSearch: () => <>LocationSearch Component</>,
+    LocationSearch: () => <div>LocationSearch Component</div>,
+}));
+
+jest.mock('../details/ForecastModal', () => ({
+    ...jest.requireActual('../details/ForecastModal'),
+    ForecastModal: () => <div>ForecastModal Component</div>,
 }));
 
 // jest.mock('../../services/utils.js', () => ({
@@ -74,17 +88,47 @@ describe('Dashboard', () => {
         // const f=screen.getByText(/UnitSwitcher Component/i)
         // expect(f).toBeTruthy()
         // expect(container).toBeTruthy();
-        const outputUnitSwitcher = screen.getByText(/UnitSwitcher Component/);
-        const outputWeatherCard = screen.getByText(/WeatherCard Component/);
-        const outputLocationSearch = screen.getByText(
-            /LocationSearch Component/
+        const outputUnitSwitcher = screen.queryAllByText(
+            'UnitSwitcher Component'
         );
+        const outputWeatherCard = screen.queryAllByText(
+            'WeatherCard Component'
+        );
+
+        // fireEvent.click(outputWeatherCard[0]);
+
+        outputWeatherCard.forEach((component) => {
+            fireEvent.click(component);
+        });
+
+        const outputLocationSearch = screen.queryAllByText(
+            'LocationSearch Component'
+        );
+        // const queryTest = screen.queryAllByText('WeatherCard Component');
+        // screen.getByText('WeatherCard Component');
+        // console.log('QUERY TEST:', queryTest);
+        const outputForecastModal = screen.queryAllByText(
+            'ForecastModal Component'
+        );
+
+        // console.log('COMPONENTS:', outputWeatherCard);
+        // fireEvent.click(queryByText('WeatherCard Component'));
         // const outputTest = screen.getByText(/Not Here/);
 
         // console.log(outputUnitSwitcher);
-        expect(outputUnitSwitcher).toBeInTheDocument();
-        expect(outputWeatherCard).toBeInTheDocument();
-        expect(outputLocationSearch).toBeInTheDocument();
+        expect(outputUnitSwitcher.length).toBe(1);
+        expect(outputUnitSwitcher[0]).toBeInTheDocument();
+
+        expect(outputWeatherCard.length).toBe(1);
+        expect(outputWeatherCard[0]).toBeInTheDocument();
+
+        expect(outputLocationSearch.length).toBe(1);
+        expect(outputLocationSearch[0]).toBeInTheDocument();
+
+        expect(outputForecastModal.length).toBe(1);
+        expect(outputForecastModal[0]).toBeInTheDocument();
+
+        // expect(queryTest.length).toBe(1);
         // expect(outputTest).toBeInTheDocument();
     });
 });
